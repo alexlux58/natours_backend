@@ -9,6 +9,8 @@ node_modules/
 
 # Environment variables
 .env
+.config.env
+config.env
 
 # Logs
 logs
