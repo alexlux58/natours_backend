@@ -63,7 +63,13 @@ exports.getTour = async (req, res) => {
   }
 };
 
-exports.createTour = async (req, res) => {
+const catchAsync = (fn) => {
+  return (req, res, next) => {
+    fn(req, res, next).catch((err) => next(err));
+  };
+};
+
+exports.createTour = catchAsync(async (req, res) => {
   try {
     const newTour = await Tour.create(req.body);
 
@@ -79,7 +85,7 @@ exports.createTour = async (req, res) => {
       message: 'Invalid data sent!',
     });
   }
-};
+});
 
 exports.updateTour = async (req, res) => {
   try {
