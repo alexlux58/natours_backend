@@ -45,6 +45,8 @@ exports.getAllTours = async (req, res) => {
   }
 };
 
+
+
 exports.getTour = async (req, res) => {
   try {
     const tour = await Tour.findById(req.params.id);
@@ -63,11 +65,7 @@ exports.getTour = async (req, res) => {
   }
 };
 
-const catchAsync = (fn) => {
-  return (req, res, next) => {
-    fn(req, res, next).catch((err) => next(err));
-  };
-};
+const catchAsync = require('./../utils/catchAsync');
 
 exports.createTour = catchAsync(async (req, res) => {
   try {
